@@ -23,11 +23,8 @@ COPY app/ .
 # Instalando os requisitos mínimos (requirements.txt)
 RUN python3 -m pip install -r requirements.txt
 
-# Configurando credenciais do AWS
-RUN mkdir -p /root/.aws && \
-    echo "[default]" >> /root/.aws/credentials && \
-    echo "aws_access_key_id = $AWS_ACCESS_KEY_ID" >> /root/.aws/credentials && \
-    echo "aws_secret_access_key = $AWS_SECRET_ACCESS_KEY" >> /root/.aws/credentials
+# Configurando diretório para credenciais AWS
+RUN mkdir -p /root/.aws
 
 # Segunda etapa
 FROM alpine:3.14
@@ -36,6 +33,7 @@ WORKDIR /work
 
 COPY --from=builder /usr/local/bin/terraform /usr/local/bin/terraform
 COPY --from=builder /usr/local/bin/aws /usr/local/bin/aws
+COPY --from=builder /root/.aws /root/.aws
 COPY --from=builder /work /work
 
 # Configurando as variáveis de ambiente
