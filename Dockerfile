@@ -1,6 +1,6 @@
 FROM alpine:3.14 as builder
 
-# Atualizando pacotes
+# Atualizando pacotesss
 RUN apt update -y 
 
 # Instalar Terraform
@@ -37,7 +37,7 @@ RUN mkdir aws
 
 
 # STAGE 2
-FROM ubuntu:22.04
+FROM alpine:3.14
 
 WORKDIR /work
 
