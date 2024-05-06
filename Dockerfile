@@ -43,7 +43,7 @@ RUN echo "[default]" >> aws/credentials && \
 # Instalando Python e dependências
 RUN apk add --no-cache python3 python3-dev py3-pip
     
-RUN pip3 install -r /work/requirements.txt
+RUN pip3 install --break-system-packages -r requirements.txt
 
 EXPOSE 8080
 
