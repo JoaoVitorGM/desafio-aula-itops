@@ -7,7 +7,7 @@ provider "aws" {
 resource "aws_instance" "ec2_instance" {
   ami           = "ami-07caf09b362be10b8"
   instance_type = "t2.micro"
-  subnet_id     = "subnet-0b2afedfe12e91925" # ID da Subnet
+  subnet_id     = "subnet-00ffb781d035b9469" # ID da Subnet
   vpc_security_group_ids = ["${aws_security_group.instance_sg.id}"]
 
   key_name = "vockey"
